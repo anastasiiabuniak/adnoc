@@ -62,8 +62,12 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "start": "(yarn start-base-app) & (yarn start-embedded)",
+    "start-base": "set REACT_APP_ENTRY=base&&node scripts/start.js",
+    "build-base": "set REACT_APP_ENTRY=base&&node scripts/build.js",
+    "start-embedded": "set REACT_APP_ENTRY=embedded&&node scripts/start.js",
+    "build-embedded": "set REACT_APP_ENTRY=embedded&&node scripts/build.js",
+    "build": "yarn build-base & yarn build-embedded",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {

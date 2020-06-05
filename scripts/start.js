@@ -34,14 +34,20 @@ const createDevServerConfig = require('../config/webpackDevServer.config');
 
 const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;
+const isBaseApp = process.env.REACT_APP_ENTRY === 'base';
+
+const app = paths.apps[process.env.REACT_APP_ENTRY];
+if (!app) {
+    process.exit(1);
+}
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
-  process.exit(1);
+if (!checkRequiredFiles([app.appHtml, app.appIndexJs])) {
+    process.exit(1);
 }
 
 // Tools like Cloud9 rely on this.
-const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
+const DEFAULT_PORT = parseInt(process.env.PORT, 10) || (isBaseApp ? 3000 : 3001);
 const HOST = process.env.HOST || '0.0.0.0';
 
 if (process.env.HOST) {

@@ -52,10 +52,21 @@ const resolveModule = (resolveFn, filePath) => {
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveModule(resolveApp, 'src/index'),
+  apps: {
+      base: {
+          name: 'base',
+          appBuild: resolveApp('build/base'),
+          appHtml: resolveApp('public/index.html'),
+          appIndexJs: resolveModule(resolveApp, 'src/base')
+      },
+      embedded: {
+          name: 'embedded',
+          appBuild: resolveApp('build/embedded'),
+          appHtml: resolveApp('public/index.html'),
+          appIndexJs: resolveModule(resolveApp, 'src/embedded')
+      }
+  },
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
