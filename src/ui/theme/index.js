@@ -8,4 +8,4 @@ const theme = {
   breakpoints,
 };
 
-export { theme };
+export default theme;

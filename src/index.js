@@ -6,7 +6,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import GlobalStyle from "./ui/global";
 import GlobalFonts from "./ui/fonts";
-import { theme } from "./ui/theme";
+import theme from "./ui/theme";
 
 ReactDOM.render(
   <React.StrictMode>
